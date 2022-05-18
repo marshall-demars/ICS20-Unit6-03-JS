@@ -19,3 +19,26 @@ if (navigator.serviceWorker) {
 function myButtonClicked() {
   document.getElementById("hello-world").innerHTML = "<p>Hello, World!</p>"
 }
+
+/**
+ * Get API info.
+*/
+// code from: https://www.youtube.com/watch?v=670f71LTWpM
+
+const getWeather = async (URLAddress) => {
+  try {
+    const result = await fetch(URLAddress)
+    const jsonData = await result.json()
+    console.log(jsonData)
+    document.getElementById("api-weather").innerHTML =
+    '<img src="' + 
+      jsonData.url + 
+      '" alt="API weather" class="center" ' +
+      '>'
+      catch (err) {
+      console.log(err)
+    }
+  }
+}  
+
+    getWeater("https://api.catboys.com/img")
