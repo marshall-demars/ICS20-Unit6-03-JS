@@ -14,13 +14,6 @@ if (navigator.serviceWorker) {
 }
 
 /**
- * This function displays an alert.
- */
-function myButtonClicked() {
-  document.getElementById("hello-world").innerHTML = "<p>Hello, World!</p>"
-}
-
-/**
  * Get API info.
 */
 // code from: https://www.youtube.com/watch?v=670f71LTWpM
@@ -29,16 +22,14 @@ const getWeather = async (URLAddress) => {
   try {
     const result = await fetch(URLAddress)
     const jsonData = await result.json()
-    console.log(jsonData)
-    document.getElementById("api-weather").innerHTML =
-    '<img src="' + 
-      jsonData.url + 
-      '" alt="API weather" class="center" ' +
-      '>'
-      catch (err) {
+    console.log(jsonData.main.temp)
+    const temperature = jsonData.main.temp - 273.15
+    console.log = (jsonData.weather.con)
+    const symbol = jsonData.weather.icon
+    document.getElementById("weather").innerHTML = "The current weather in Ottawa is " + temperature.toFixed(0) + "℃ " + symbol
+    } catch (err) {
       console.log(err)
-    }
   }
 }  
 
-    getWeater("https://api.catboys.com/img")
+    getWeather("https://api.openweathermap.org/data/2.5/weather?lat=45.4211435&lon=-75.6900574&appid=fe1d80e1e103cff8c6afd190cad23fa5")
